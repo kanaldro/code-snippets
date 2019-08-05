@@ -1,0 +1,3 @@
+                    {if $category.slug eq 'stiri'} 
+                            {assign var=articles value=get_active_articles([ 'site_id' => 2862, "(SELECT COUNT(id) FROM `articles` WHERE i.id = id AND category_id in(`$subcategorii_stiri`)) > 0 " => '1'], 'published DESC', 0, 58, [ 'relations' => true ])}                
+                    {/if}
