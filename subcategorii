@@ -1,0 +1,11 @@
+            {assign var=tree value=get_site_categories_tree($site->get_id())}
+            {assign var=catslug value="stiri"}
+            {assign var=children_of_the_stiri value=[]}
+          		{foreach from=$tree item=categorie}
+				    {if isset($categorie.children) and $categorie.slug eq $catslug }
+                            {foreach from=$categorie.children item=subcategorie}
+                                    {append var='children_of_the_stiri' value=$subcategorie.slug}
+                                     {append var='children_of_the_stiri_id' value=$subcategorie.id}
+                            {/foreach}
+                     {/if}
+                 {/foreach}     
