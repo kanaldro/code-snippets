@@ -1,5 +1,6 @@
                     {if $category.slug eq 'stiri'} 
-                            {assign var=articles value=get_active_articles([ 'site_id' => 2862, "(SELECT COUNT(id) FROM `articles` WHERE i.id = id AND category_id in(`$subcategorii_stiri`)) > 0 " => '1'], 'published DESC', 0, 58, [ 'relations' => true ])}                
+                            {assign var=articles value=get_active_articles([ 'site_id' => $site->get_id(), 
+			    "(SELECT COUNT(id) FROM `articles` WHERE i.id = id AND category_id in(`$subcategorii_stiri`)) > 0 " => '1'], 'published DESC', 0, 58, [ 'relations' => true ])}                
                     {/if}
 
 
@@ -12,7 +13,8 @@
 
 		{assign var=children_of_cat_ids value=$tree[$category.id].children|array_keys|array_merge:[$category.id]|implode:','}
 
-		{assign var=articles value=get_active_articles([ 'site_id' => $site->get_id(), "(SELECT COUNT(id) FROM `articles` WHERE i.id = id AND category_id in(`$children_of_cat_ids`)) > 0 " => '1'], 'published DESC', 0, 58, [ 'relations' => true ])}                
+		{assign var=articles value=get_active_articles([ 'site_id' => $site->get_id(), 
+		"(SELECT COUNT(id) FROM `articles` WHERE i.id = id AND category_id in(`$children_of_cat_ids`)) > 0 " => '1'], 'published DESC', 0, 58, [ 'relations' => true ])}                
 
 	{/if}
 
