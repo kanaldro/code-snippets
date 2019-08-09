@@ -1,0 +1,5 @@
+get_active_articles(
+  [ 
+      'has_category_id' => $main_category.id , 
+      "(SELECT COUNT(*) FROM `relations` WHERE rel_type = 'categories' AND rel_id = 50009 AND item_id = i.id)" => '0'
+  ], 'published DESC', 0, 7)
